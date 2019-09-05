@@ -27,12 +27,6 @@
       <version>13.0</version>
     </dependency>
     <dependency>
-      <groupId>com.graphql-java</groupId>
-      <artifactId>graphql-java-tools</artifactId>
-      <!-- 5.2.4, 4.3.0  -->
-      <version>5.2.4</version>
-    </dependency>
-    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
@@ -41,14 +35,9 @@
     <dependency>
       <groupId>com.graphql-java-kickstart</groupId>
       <artifactId>graphql-java-servlet</artifactId>
-      <!-- version>TGR-8.0.1-SNAPSHOT</version -->
-      <version>8.0.0</version>
+      <version>TGR-8.0.1-SNAPSHOT</version>
+      <!--version>8.0.0</version -->
     </dependency>
-    <!--dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-grizzly2-servlet</artifactId>
-      <version>2.29</version>
-    </dependency -->
     <dependency>
       <groupId>org.glassfish.grizzly</groupId>
       <artifactId>grizzly-http-servlet-server</artifactId>

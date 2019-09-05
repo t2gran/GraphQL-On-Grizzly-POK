@@ -1,0 +1,22 @@
+
+type Query {
+    boker: [Bok]
+    bok(id: ID): Bok
+}
+
+"En god bok forlenger livet..."
+type Bok {
+    id: ID
+    navn: String
+    sider: Int
+    ISBN : String
+    forfatter: Forfatter
+}
+
+"Jo Nesbø er en forfatter"
+type Forfatter {
+    id: ID
+    "Han har et navn"
+    fornavn: String
+    etternavn: String
+}

@@ -10,6 +10,7 @@ type Book {
     author: Author
 }
 
+"This is an englich description on Author."
 type Author {
     id: ID
     firstName: String

@@ -1,4 +1,4 @@
-package org.tiger.graphqlbeta.api;
+package org.tiger.graphqlbeta.model;
 
 public class Auther {
     private final String id;
