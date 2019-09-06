@@ -15,12 +15,6 @@ public class Book {
         this.author = author;
     }
 
-    public Book(String name, int pages, Auther author) {
-        this.name = name;
-        this.pages = pages;
-        this.author = author;
-    }
-
     public Book() { }
 
     public String getId() {

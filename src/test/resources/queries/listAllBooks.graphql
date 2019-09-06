@@ -1,0 +1,11 @@
+query ListBooks {
+    allBooks {
+        id
+        name
+        pagesCount
+        author {
+            firstName
+            lastName
+        }
+    }
+}

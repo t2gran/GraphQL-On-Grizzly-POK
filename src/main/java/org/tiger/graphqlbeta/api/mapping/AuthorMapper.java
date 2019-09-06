@@ -1,24 +1,25 @@
 package org.tiger.graphqlbeta.api.mapping;
 
-import graphql.schema.DataFetchingEnvironment;
 import graphql.schema.idl.TypeRuntimeWiring;
-import org.tiger.graphqlbeta.api.Translation;
+import org.tiger.graphqlbeta.api.ModelTerminologyMapping;
 import org.tiger.graphqlbeta.model.Auther;
 
-public class AuthorMapper {
-    private Translation i;
 
-    public AuthorMapper(Translation i) {
-        this.i = i;
+import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.*;
+
+public class AuthorMapper extends AbstractBinder<Auther> {
+
+    public AuthorMapper(ModelTerminologyMapping.Translation translation) {
+        super(translation);
     }
 
     public TypeRuntimeWiring.Builder authorFetcher(TypeRuntimeWiring.Builder builder) {
-        return builder
-                .dataFetcher(i.id(), e -> auther(e).getId())
-                .dataFetcher(i.firstName(), e -> auther(e).getFirstName())
-                .dataFetcher(i.lastName(), e -> auther(e).getLastName())
-                ;
-    }
+        useBuilder(builder);
 
-    private static Auther auther(DataFetchingEnvironment e) { return ((Auther)e.getSource()); }
+        bind(ID, Auther::getId);
+        bind(FIRST_NAME, Auther::getFirstName);
+        bind(LAST_NAME, Auther::getLastName);
+
+        return builder;
+    }
 }
