@@ -1,0 +1,138 @@
+# source: http://localhost:8080/otp/routers/default/index/graphql
+# timestamp: Mon Sep 09 2019 12:26:49 GMT+0200 (Central European Summer Time)
+
+schema {
+    query: QueryType
+}
+
+"""This directive allows results to be deferred during execution"""
+directive @defer on FIELD
+
+"""Long type"""
+scalar Long
+
+scalar Foo
+"Bar doc"
+scalar Bar
+
+enum Mode {
+    """BICYCLE"""
+    BICYCLE
+
+    """BUS"""
+    BUS, "WALK" WALK
+}
+
+"""An object with an ID"""
+interface Node {
+    """The ID of an object"""
+    id: ID! @defer
+}
+
+"""Interface for places, i.e. stops, stations,
+parks"""
+interface PlaceInterface {
+    id: ID!
+    coordinate : Coordinate
+}
+
+type Coordinate {
+    lat: Float
+    lon: Float
+}
+
+"""Text with language"""
+type TranslatedString {
+    text: String
+    language: String
+}
+
+"""In GTFS Agency or NeTEx Authority"""
+type Agency implements Node {
+    id: ID!
+
+    """Agency id"""
+    name: String!
+    url: String
+    routes: [Route]
+
+    """Headers of alert in all different translations available notnull"""
+    alertHeaderTextTranslations:
+    [TranslatedString!]!
+
+    """Additional details of alert"""
+    alertDetailText: String! @deprecated(reason: "Not allowed. Use ´alertAdviceText´ instead.")
+
+    """
+    Additional details of alert in all different translations available notnull
+    """
+    alertDetailTextTranslations: [TranslatedString!]! @deprecated(reason: "Not allowed. Use ´x´ instead.")
+
+}
+
+type Stop implements Node & PlaceInterface {
+    id: ID!
+    name: String!
+    coordinate: Coordinate
+}
+
+type Route implements Node {
+    id: ID!
+    agency: Agency
+    name: String
+    mode: Mode
+
+    stops: [Stop]
+    trips: [Trip]
+}
+
+type Trip implements Node {
+    id: ID!
+    route: Route!
+    agency: Agency
+    stops: [Stop!]!
+
+    """Returns scheduled stoptimes updated with realtime-updates"""
+    stopsForDate(serviceDay: String): [Stop]
+}
+
+type QueryType {
+    """Fetches an object given its ID"""
+    node(
+        """The ID of an object"""
+        id: ID!
+    ): Node
+
+    """Get all agencies for the specified graph"""
+    agencies: [Agency]
+
+    """Get a single agency based on agency ID"""
+    agency(id: String!): Agency
+
+    """Get all stops for the specified graph"""
+    stops(ids: [String], name: String): [Stop]
+
+    """Get all stops within the specified bounding box"""
+    stopsByBbox(minLat: Float, minLon: Float, maxLat: Float, maxLon: Float, agency: String): [Stop]
+
+    """Get all routes for the specified graph"""
+    routes(ids: [String], name: String, modes: String): [Route]
+
+    """Get a single route based on its id (format is Agency:RouteId)"""
+    route(id: String!, mode : Mode = BUS): Route
+
+    """Gets plan of a route"""
+    plan(
+        date: String
+        time: String
+
+        fromPlace: String
+        toPlace: String
+
+        """
+        when true, do not use goal direction or stop at the target, build a full SPT
+        """
+        batch: Boolean
+
+    ): Trip
+}

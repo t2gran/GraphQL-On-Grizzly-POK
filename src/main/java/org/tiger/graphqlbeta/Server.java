@@ -19,7 +19,7 @@ public class Server {
         try {
             WebappContext webCtx = createContext();
 
-            HttpServer server = HttpServer.createSimpleServer();
+            HttpServer server = HttpServer.createSimpleServer("/", 17279);
 
             webCtx.deploy(server);
 
