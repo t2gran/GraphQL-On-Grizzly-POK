@@ -1,4 +1,4 @@
-package org.tiger.graphqlbeta.api.mapping;
+package org.tiger.graphqlbeta.api.binding;
 
 import graphql.schema.idl.TypeRuntimeWiring;
 import org.tiger.graphqlbeta.api.ModelTerminologyMapping;
@@ -8,10 +8,10 @@ import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.ALL_BOOKS;
 import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.BOOK_BY_ID;
 import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.ID;
 
-public class QueryMapper extends AbstractBinder<Object> {
+public class QueryBinder extends AbstractBinder<Object> {
     private final Repository data;
 
-    public QueryMapper(ModelTerminologyMapping.Translation translation, Repository data) {
+    public QueryBinder(ModelTerminologyMapping.Translation translation, Repository data) {
         super(translation);
         this.data = data;
     }

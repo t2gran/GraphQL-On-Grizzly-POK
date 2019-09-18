@@ -1,4 +1,4 @@
-package org.tiger.graphqlbeta.api.mapping;
+package org.tiger.graphqlbeta.api.binding;
 
 import graphql.schema.idl.TypeRuntimeWiring;
 import org.tiger.graphqlbeta.api.ModelTerminologyMapping;

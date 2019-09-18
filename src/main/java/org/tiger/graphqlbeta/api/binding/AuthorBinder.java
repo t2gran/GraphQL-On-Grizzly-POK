@@ -1,15 +1,16 @@
-package org.tiger.graphqlbeta.api.mapping;
+package org.tiger.graphqlbeta.api.binding;
 
 import graphql.schema.idl.TypeRuntimeWiring;
 import org.tiger.graphqlbeta.api.ModelTerminologyMapping;
 import org.tiger.graphqlbeta.model.Auther;
 
+import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.FIRST_NAME;
+import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.ID;
+import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.LAST_NAME;
 
-import static org.tiger.graphqlbeta.api.ModelTerminologyMapping.*;
+public class AuthorBinder extends AbstractBinder<Auther> {
 
-public class AuthorMapper extends AbstractBinder<Auther> {
-
-    public AuthorMapper(ModelTerminologyMapping.Translation translation) {
+    public AuthorBinder(ModelTerminologyMapping.Translation translation) {
         super(translation);
     }
 

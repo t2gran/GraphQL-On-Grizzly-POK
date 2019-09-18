@@ -22,7 +22,10 @@ public enum ModelTerminologyMapping {
     LAST_NAME("lastName", "fornavn")
     ;
 
+    // English translation (default)
     public final String en;
+
+    // Norwegian translation
     public final String no;
 
     ModelTerminologyMapping(String en, String no) {
