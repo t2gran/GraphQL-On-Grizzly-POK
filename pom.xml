@@ -30,7 +30,7 @@
       <groupId>com.graphql-java</groupId>
       <artifactId>graphql-java</artifactId>
       <!-- 13.0, 11.0 -->
-      <version>13.0</version>
+      <version>17.4</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
